@@ -16,3 +16,14 @@ def absolute_value(any_real_number):
         return any_real_number * -1
     return any_real_number
 ```
+Here is you can test if you calculations are correct:
+
+```python
+In [15]: for i in range(-1, 2):
+    ...:     print('|{}|={}'.format(i, absolute_value(i)))
+    ...:     
+|-1|=1
+|0|=0
+|1|=1
+
+```
