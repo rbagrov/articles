@@ -33,8 +33,8 @@ Let's check if there is build in function that will save us from writting our ow
 The two most popular ones are abs() which is a build in function and fabs() which is imorted from math.
 
 People tend to compare performance and argue which is better, but the truth is that they are quite different by their purpose.
-abs(x), where x can be any numeric type: int, float, complex
-fabs(x), where x can be only float. Integers are converted to float.
++ abs(x), where x can be any numeric type: int, float, complex
++ fabs(x), where x can be only float. Integers are converted to float.
 
 Performance wise, working with the same number there is no significant difference. 
 Here is a simple comparison with a float number in contrast to our own modulus implementation.:
