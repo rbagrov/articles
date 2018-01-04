@@ -37,7 +37,8 @@ People tend to compare performance and argue which is better, but the truth is t
 + fabs(x), where x can be only float. Integers are converted to float.
 
 Performance wise, working with the same number there is no significant difference. 
-Here is a simple comparison with a float number in contrast to our own modulus implementation.:
+
+Here is a simple comparison with a float number in contrast to our own modulus implementation:
 ```python
 In [1]: %timeit absolute_value(-5.0)
 10000000 loops, best of 3: 167 ns per loop
@@ -46,3 +47,19 @@ In [2]: %timeit abs(-5.0)
 In [3]: %timeit fabs(-5.0)
 10000000 loops, best of 3: 53.7 ns per loop
 ```
+
+So first glance conclusion performance wise is not to re-inplement build in functions as you will never get them running faster, despite how un accurate our test might be. It clearly shows a difference.
+
+If fabs(x) vs. abs(x), where x is integer, fabs() is expected do give a little slower return as it converts the argument to float.
+
+Here is what happens:
+```python
+In [1]: %timeit fabs(5)
+10000000 loops, best of 3: 83.6 ns per loop
+In [2]: %timeit abs(5)
+10000000 loops, best of 3: 42.7 ns per loop
+```
+
+Whatever you choose between abs() and fabs() might be for what arguments you expect to feed and what datatypes work for you in the function returns.
+
+
