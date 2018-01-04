@@ -82,3 +82,10 @@ Whatever you choose between abs() and fabs() might be for what arguments you exp
 
 The fun part of this article is where we ask: Can we calculate absolute values without branching (using if/else). Yes we can and here is how:
 
+```python
+In [1]: x = -5
+In [2]: y = (x >> 31)
+In [3]: (x ^ y) - y
+Out[3]: 5
+```
+This is one of the two methods. It uses bit XOR and value 31 is taking the sign bit of the integer (asuming it is 32 bit one).
