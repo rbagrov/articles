@@ -80,4 +80,5 @@ In [2]: %timeit abs(5)
 
 Whatever you choose between abs() and fabs() might be for what arguments you expect to feed and what datatypes work for you in the function returns.
 
+The fun part of this article is where we ask: Can we calculate absolute values without branching (using if/else). Yes we can and here is how:
 
