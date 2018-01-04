@@ -2,7 +2,10 @@
 
 Let's start with "What is an absolute value?". Absolute value for a real_number or "modulus" for a real_number is the non negative representation of that real_number. The sign of the real_number does not matter. Zero can have absolute value as well. In math absolute value is presented by |<real_number>| = <non-negative_real_number>. Your takeway for your tests from here is that any valid x you pass to your absolute_value function will always return non-negative response.
 
-Why do we need to have such absolute value? Answer is simple for simple cases and complex for complex cases. Typical simple case is when you have for example a thermometer. You record values of this thermometer measurements. The numbers you record in your dataset can be positive, zero or negative. If you need to have the actual delta between values (each one of your measurements), you need to always present it as an absolute difference. These values going positive or negative doesn't matter. The amount of the difference is always an absolute value.
+Why do we need to have such absolute value? Answer is simple for simple cases and complex for complex cases. 
++ Typical simple case is when you have for example a thermometer. You record values of this thermometer measurements. The numbers you record in your dataset can be positive, zero or negative. If you need to have the actual delta between values (each one of your measurements), you need to always present it as an absolute difference. These values going positive or negative doesn't matter. The amount of the difference is always an absolute value.
++ More complex case is when calculating distance between two points (Euclidean distance) in space (Euclidean space). To bit simplify you can think of Euclidean distance as straight-line distance between two points in two dimentional plane. After you make calculations not typically important for the purpose of this article you will endup with having value in absolute form, which will represent your distance
+ 
 
 There are several different approaches of how absolute value can be calculated. It of course depends on the real_number itself.
 Let's say we have a simple integer value for which we would like to have the absolute value. We can use conditional construction to check if our simple integer is less than zero. If so we have to return non-negative integer. This is our only condition. In any other case we return what we got as an argument.
@@ -32,8 +35,23 @@ In [15]: for i in range(-1, 2):
 Let's check if there is build in function that will save us from writting our own one everytime we need it.
 The two most popular ones are abs() which is a build in function and fabs() which is imorted from math.
 
-People tend to compare performance and argue which is better, but the truth is that they are quite different by their purpose.
-+ abs(x), where x can be any numeric type: int, float, complex
+People tend to compare performance and argue which is better, but the truth is that they are quite different by their purpose. Important note here is that both functions are available in Python2 and Python3.
++ abs(x), where x can be any numeric type: int, float, complex, binary/hex/octal number
+Example:
+```python
+In [1]: abs(5) # integer
+Out[1]: 5
+In [2]: abs(-5.0) # float
+Out[2]: 5.0
+In [3]: abs(3+4j) # complex
+Out[3]: 5.0
+In [4]: abs(0b010) # binary
+Out[4]: 2
+In [5]: abs(0o40) # octal
+Out[5]: 32
+In [6]: abs(0x20) # hex
+Out[6]: 32
+```
 + fabs(x), where x can be only float. Integers are converted to float.
 
 Performance wise, working with the same number there is no significant difference. 
