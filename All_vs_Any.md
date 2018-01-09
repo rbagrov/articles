@@ -39,3 +39,14 @@ Comparison between feeded arguments and return values:
 | one True value (rest are False) |  True   |  False  |
 | one False value (rest are True) |  True   |  False  |
 | is empty                          |  False  |  True   |
+
+any() is fast as it does not run thru the whole iterable but as soon as it knows its answer it breaks and returns it.
+Here is how you can test that:
+```python
+```
+
+Interesting case is to use any() in combination with all() for the same iterable to ensure that:
+
+|   expression for x    |                                                   assertion for x   |
+|-----------------------|---------------------------------------------------------------------|
+| any(x) and not all(x) | ensure that at least of the value in x is True, but not all of them |
