@@ -29,3 +29,13 @@ def any(iterable):
             return True
     return False
 ```
+
+Comparison between feeded arguments and return values:
+
+|   if the iterable contains              |  any() returns |  all() returns  |
+|-----------------------------------------|---------|---------|
+| only True values                       |  True   |  True   |
+| only False values                        |  False  |  False  |
+| one True value (rest are False) |  True   |  False  |
+| one False value (rest are True) |  True   |  False  |
+| is empty                          |  False  |  True   |
