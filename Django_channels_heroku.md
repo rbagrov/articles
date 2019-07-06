@@ -1,4 +1,4 @@
-## Deploying ```Django Channels v2.2.0 / Django 2.1.9``` to Heroku
+## Deploying ```Django Channels v2.2.0 / Django v2.1.9``` to Heroku
 
 ### Terms:
 + Heroku: Platform as a Service a.k.a. PaaS
@@ -17,21 +17,22 @@ What needs to happen is Daphne to substitute your Gunicorn/Waitress or whatever 
 
 #### FROM (in my test case I use Waitress for WSGI and Celery as task manager)
 ```
-web: waitress-serve --port=$PORT core.wsgi:application
-worker: celery worker --app=core.celery.app -l DEBUG
+web: waitress-serve --port=$PORT my_config.wsgi:application
+worker: celery worker --app=my_config.celery.app -l DEBUG
 ```
 
 #### TO (Daphne setup substitutes Waitress setup and leave Celery as is)
 ```
-web: daphne -p $PORT -b 0.0.0.0 core.asgi:application
-worker: celery worker --app=core.celery.app -l DEBUG
+web: daphne -p $PORT -b 0.0.0.0 my_config.asgi:application
+worker: celery worker --app=my_config.celery.app -l DEBUG
 ```
 
 There are few components here that you should know what they do:
 + $PORT is valid referral: $Port or $port are not valid , because PORT is auto set by Heroku. Do NOT set --port to static value.
 + Daphne needs to get your asgi application instance: here is how
 
-You need to give Daphne argument of where your so-called asgi.py file is. Here is what mine looks like:
+You need to give Daphne argument of where your so-called ```asgi.py``` file is. Here is what mine looks like:
+
 ```python
  1 import os
  2 import django
@@ -42,12 +43,12 @@ You need to give Daphne argument of where your so-called asgi.py file is. Here i
  7 application = get_default_application()
 ```
 
-If we go line by line we can see that on line 5 we get the settings our Django will run with or get by default - in my example our local settings.
+If we go line by line we can see that on line 5 we get the settings our Django will run with or get by default - in my example our dev(local) settings.
 
-#### Please note that the settings path is unique and in your project will be different!
+#### Please note that the settings path is unique and in your project WILL be different!
 
 On line 6 we tell Django to load its settings, because later in ```get_default_application()``` we have to have them in memory.
-``` get_default_application()``` is dead simple function that:
+``` get_default_application()``` is simple function that:
 + Looks in your Django settings for ```ASGI_APPLICATION = "my_websocket_django_app.routing.application"``` definition.
 + Strips down the path ```my_websocket_django_app.routing``` and the name of the application ```application```.
 + Tries to import the path ```my_websocket_django_app.routing```
