@@ -31,7 +31,7 @@ There are few components here that you should know what they do:
 + $PORT is valid referral: $Port or $port are not valid , because PORT is auto set by Heroku. Do NOT set --port to static value.
 + Daphne needs to get your asgi application instance: here is how
 
-You need to give Daphne argument of where you so-called asgi.py file is. Here is how mine looks like:
+You need to give Daphne argument of where your so-called asgi.py file is. Here is what mine looks like:
 ```python
  1 import os
  2 import django
