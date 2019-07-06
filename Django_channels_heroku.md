@@ -49,11 +49,11 @@ If we go line by line we can see that on line 5 we get the settings our Django w
 
 On line 6 we tell Django to load its settings, because later in ```get_default_application()``` we have to have them in memory.
 ``` get_default_application()``` is simple function that:
-+ Looks in your Django settings for ```ASGI_APPLICATION = "my_websocket_django_app.routing.application"``` definition.
-+ Strips down the path ```my_websocket_django_app.routing``` and the name of the application ```application```.
-+ Tries to import the path ```my_websocket_django_app.routing```
++ Looks in your Django settings for ```ASGI_APPLICATION = "my_config.routing.application"``` definition.
++ Strips down the path ```my_config.routing``` and the name of the application ```application```.
++ Tries to import the path ```my_config.routing```
 
-My ```my_websocket_django_app/routing.py``` looks like this:
+My ```my_config/routing.py``` looks like this:
 
 ```python
   1 from my_websocket_django_app.my_custom_auth import MyCustomAuthMiddleware
