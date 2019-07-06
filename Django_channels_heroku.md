@@ -1,4 +1,4 @@
-## Deploying Django Channels v2 / Django 2.X to Heroku
+## Deploying ```Django Channels v2.2.0 / Django 2.1.9``` to Heroku
 
 ### Terms:
 + Heroku: Platform as a Service a.k.a. PaaS
@@ -37,7 +37,7 @@ You need to give Daphne argument of where your so-called asgi.py file is. Here i
  2 import django
  3 from channels.routing import get_default_application
  4
- 5 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "core.settings.local")
+ 5 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "my_config.my_settings.dev")
  6 django.setup()
  7 application = get_default_application()
 ```
@@ -48,11 +48,11 @@ If we go line by line we can see that on line 5 we get the settings our Django w
 
 On line 6 we tell Django to load its settings, because later in ```get_default_application()``` we have to have them in memory.
 ``` get_default_application()``` is dead simple function that:
-+ Looks in your Django settings for ```ASGI_APPLICATION = "core.routing.application"``` definition.
-+ Strips down the path ```core.routing``` and the name of the application ```application```.
-+ Tries to import the path ```core.routing```
++ Looks in your Django settings for ```ASGI_APPLICATION = "my_websocket_django_app.routing.application"``` definition.
++ Strips down the path ```my_websocket_django_app.routing``` and the name of the application ```application```.
++ Tries to import the path ```my_websocket_django_app.routing```
 
-My ```core/routing.py``` looks like this:
+My ```my_websocket_django_app/routing.py``` looks like this:
 
 ```python
   1 from my_websocket_django_app.my_custom_auth import MyCustomAuthMiddleware
@@ -62,7 +62,7 @@ My ```core/routing.py``` looks like this:
   5 application = ProtocolTypeRouter({
   6     'websocket': MyCustomAuthMiddleware(
   7         URLRouter(
-  8             my_wensocket_django_app.routing.websocket_urlpatterns
+  8             my_websocket_django_app.routing.websocket_urlpatterns
   9         )
  10     ),
  11 })
