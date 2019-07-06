@@ -1,4 +1,4 @@
-## Deploying Django Channels v2 / Django 2.X on Heroku
+## Deploying Django Channels v2 / Django 2.X to Heroku
 
 ### Terms:
 + Heroku: Platform as a Service a.k.a. PaaS
